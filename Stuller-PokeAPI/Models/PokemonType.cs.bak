@@ -1,0 +1,10 @@
+using Newtonsoft.Json;
+
+[JsonObject]
+public class PokemonType
+{
+    public int slot { get; set; }
+
+    [JsonProperty("type")]
+    public List<Resource> type { get; set; }
+}
