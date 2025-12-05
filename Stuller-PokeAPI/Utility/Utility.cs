@@ -1,3 +1,5 @@
+using FuzzySharp;
+
 public static class Utility
 {
 
@@ -31,6 +33,14 @@ public static class Utility
 
     }
 
+        public static List<String> FindBestMatchAsync(String userPokemon, List<String> pokedex)
+    {
+
+        var bestMatch = Process.ExtractTop(userPokemon, pokedex);
+
+        return bestMatch.ToList().Select(suggestion => suggestion.Value).ToList();
+    }
+
     private static void UpdateDamageList(List<String> damageList, List<ApiResource> damageInfoList)
     {
 
@@ -40,4 +50,6 @@ public static class Utility
         damageList.Clear();
         damageList.AddRange(cleanedList);
     }
+
+
 }

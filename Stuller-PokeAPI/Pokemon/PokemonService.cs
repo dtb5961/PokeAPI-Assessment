@@ -43,6 +43,18 @@ public class PokemonService : IPokemonService
 
     }
 
+    public async Task<TypeEffectInfo> FetchTypeEffectInfoAsync(String pokemonType)
+    {
+
+        var response = await _httpClient.GetAsync($"type/{pokemonType}").ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+
+        TypeEffectInfo pokemonTypeEffectInfo = await response.Content.ReadAsAsync<TypeEffectInfo>().ConfigureAwait(false);
+
+
+        return pokemonTypeEffectInfo;
+    }
+
 }
 
 

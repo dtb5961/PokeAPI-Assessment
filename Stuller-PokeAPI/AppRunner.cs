@@ -1,17 +1,10 @@
 public class AppRunner
 {
     private readonly IPokemonService _pokemonService;
-    private readonly ITypeEffectService _typeEffectService;
-    private readonly IFuzzyMatcher _fuzzyMatcher;
 
-    public AppRunner(
-        IPokemonService pokemonService,
-                                      ITypeEffectService typeEffectService,
-                                                                          IFuzzyMatcher fuzzyMatcher)
+    public AppRunner(IPokemonService pokemonService)
     {
         _pokemonService = pokemonService;
-        _typeEffectService = typeEffectService;
-        _fuzzyMatcher = fuzzyMatcher;
     }
 
     public async Task RunAsync()
@@ -34,7 +27,7 @@ public class AppRunner
             List<String> pokedex = await _pokemonService.FetchPokedexAsync();
 
             //Optional fuzzy suggestions
-            var suggestions = await _fuzzyMatcher.FindBestMatchAsync(input, pokedex);
+            List<String> suggestions = Utility.FindBestMatchAsync(input, pokedex);
 
             if (suggestions.Any())
             {
@@ -83,7 +76,7 @@ public class AppRunner
         List<String> weakAgainst = new List<String>();
 
 
-        var fetchDamageResponses = pokemonTypesList.Select(pokemonType => _typeEffectService.FetchTypeEffectInfoAsync(pokemonType)).ToList();
+        var fetchDamageResponses = pokemonTypesList.Select(pokemonType => _pokemonService.FetchTypeEffectInfoAsync(pokemonType)).ToList();
 
         var damageResponses = await Task.WhenAll(fetchDamageResponses);
 
