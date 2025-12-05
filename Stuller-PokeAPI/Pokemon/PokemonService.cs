@@ -16,12 +16,31 @@ public class PokemonService : IPokemonService
     {
 
         var response = await _httpClient.GetAsync($"pokemon/{userPokemonName}").ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
+        //response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
 
         PokemonAttributes userPokemon = await response.Content.ReadAsAsync<PokemonAttributes>().ConfigureAwait(false);
 
 
         return userPokemon;
+    }
+
+    public async Task<List<String>> FetchPokedexAsync()
+    {
+
+        var response = await _httpClient.GetAsync("pokemon?limit=-1").ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+
+        Pokedex pokedex = await response.Content.ReadAsAsync<Pokedex>().ConfigureAwait(false);
+
+        List<String> pokedexList = pokedex.results.Select(x => x.name).ToList();
+
+        return pokedexList;
+
+
     }
 
 }

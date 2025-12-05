@@ -25,7 +25,7 @@ namespace PokemonConsoleApp
                     services.AddTransient<ITypeEffectService, TypeEffectService>();
 
                     // Optional bonus: fuzzy search service
-                    //services.AddTransient<IFuzzyMatcher, FuzzyMatcher>();
+                    services.AddTransient<IFuzzyMatcher, FuzzyMatcher>();
 
                     // Register console runner
                     services.AddTransient<AppRunner>();
