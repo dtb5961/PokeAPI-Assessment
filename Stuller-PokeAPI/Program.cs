@@ -1,8 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace PokemonConsoleApp
 {
@@ -11,6 +9,7 @@ namespace PokemonConsoleApp
         static async Task Main(string[] args)
         {
             using IHost host = Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging => logging.ClearProviders())
                 .ConfigureServices((context, services) =>
                 {
                     // Register a named HttpClient for PokeAPI
