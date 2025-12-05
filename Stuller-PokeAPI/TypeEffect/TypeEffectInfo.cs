@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 
-public class PokemonTypeInfo
+public class TypeEffectInfo
 {
     public DamageRelations damage_relations { get; set; }
     public int id { get; set; }
@@ -17,6 +17,7 @@ public class DamageRelations
     public List<ApiResource> half_damage_to { get; set; }
     public List<ApiResource> no_damage_from { get; set; }
     public List<ApiResource> no_damage_to { get; set; }
+
 }
 
 

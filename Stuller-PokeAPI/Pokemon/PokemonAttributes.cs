@@ -30,6 +30,11 @@ public class PokemonType
 {
     public int slot { get; set; }
     public ApiResource type { get; set; }
+
+    public String GetPokemonType()
+    {
+        return type.name;
+    }
 }
 
 
