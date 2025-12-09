@@ -49,6 +49,40 @@ dotnet build
 dotnet run
 ```
 
+Sample Output
+
+```
+Enter a Pokémon name (or press Enter to exit):
+Pikachu
+
+Pokemon is pikachu and type/s is/are: electric
+
+Strong against: flying, water, steel, electric
+Weak against: ground, grass, electric, dragon
+
+Enter a Pokémon name (or press Enter to exit):
+Char
+No Pokémon found for 'Char'.
+Did you mean:
+ 1. chimchar
+ 2. charizard
+ 3. charmander
+ 4. charjabug
+ 5. charmeleon
+Enter the number of the Pokémon you meant, or press Enter to cancel:
+2
+Fetching data for 'charizard'...
+
+Pokemon is charizard and type/s is/are: fire, flying
+
+Strong against: bug, steel, grass, ice, fire, fairy, fighting, ground
+Weak against: rock, fire, water, dragon, ground, steel, electric, ice
+
+Enter a Pokémon name (or press Enter to exit):
+
+No Pokémon Entered Exiting
+```
+
 ## Testing
 
 Unit tests were created for the Service class and the Utility class.
