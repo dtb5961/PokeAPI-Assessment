@@ -26,7 +26,7 @@ public class AppRunner
 
             while (pokemonResponse.Status.Equals(PokeApiStatus.NotFound))
             {
-                Console.WriteLine($"No Pokémon found for '{input}'.");
+                Console.WriteLine($"\nNo Pokémon found for '{input}'.");
 
                 if (pokedex == null || pokedex.Count == 0)
                 {
@@ -55,7 +55,7 @@ public class AppRunner
                         Console.WriteLine($" {i + 1}. {suggestionList[i]}");
                     }
 
-                    Console.WriteLine("Enter the number of the Pokémon you meant, or press Enter to cancel:");
+                    Console.WriteLine("\nEnter the number of the Pokémon you meant, or press Enter to cancel:");
 
                     var selectionInput = Console.ReadLine()?.Trim();
 
@@ -74,7 +74,7 @@ public class AppRunner
                         if (selectedIndex >= 0 && selectedIndex < suggestionList.Count)
                         {
                             var selectedName = suggestionList[selectedIndex];
-                            Console.WriteLine($"Fetching data for '{selectedName}'...");
+                            Console.WriteLine($"\nFetching data for '{selectedName}'...");
 
                             pokemonResponse = await _pokemonService.GetPokemonAttributesAsync(selectedName);
                         }
