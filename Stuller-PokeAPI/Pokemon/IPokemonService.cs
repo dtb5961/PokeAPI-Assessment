@@ -1,9 +1,9 @@
 public interface IPokemonService
 {
-    Task<PokemonAttributes> FetchPokemonAttributesAsync(String userPokemon);
+    Task<PokeApiAttributeResult> GetPokemonAttributesAsync(String userPokemon);
 
-    Task<List<String>> FetchPokedexAsync();
+    Task<PokeApiPokedexResult> GetPokedexAsync();
 
-    Task<TypeEffectInfo> FetchTypeEffectInfoAsync(String pokemonType);
+    Task<PokeApiTypeEffectResult> GetTypeEffectInfoAsync(String pokemonType);
 }
 

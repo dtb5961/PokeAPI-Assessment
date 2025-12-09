@@ -6,17 +6,15 @@ public static class Utility
     public static String GetPokemonTypeFromAttributes(PokemonAttributes pokemonAttributes)
     {
         List<PokemonType> pokemonTypeList = pokemonAttributes.types;
-        String parsedList = "";
         if (pokemonTypeList.Count == 1)
         {
-            parsedList = pokemonTypeList[0].GetPokemonType();
+            return pokemonTypeList[0].GetPokemonType();
         }
         else
         {
-            pokemonTypeList.ForEach(pokemonType => parsedList += $"{pokemonType.GetPokemonType()}\t");
+            return string.Join(", ", pokemonTypeList.Select(pokemon => pokemon.GetPokemonType()));
         }
 
-        return parsedList;
     }
 
     public static void ProcessDamageEffect(DamageRelations pokemonDamageInfo, List<String> strongAgainst, List<String> weakAgainst)
@@ -33,7 +31,7 @@ public static class Utility
 
     }
 
-        public static List<String> FindBestMatchAsync(String userPokemon, List<String> pokedex)
+    public static List<String> FindBestMatches(String userPokemon, List<String> pokedex)
     {
 
         var bestMatch = Process.ExtractTop(userPokemon, pokedex);
@@ -41,14 +39,17 @@ public static class Utility
         return bestMatch.ToList().Select(suggestion => suggestion.Value).ToList();
     }
 
-    private static void UpdateDamageList(List<String> damageList, List<ApiResource> damageInfoList)
+    public static void CleanDamageList(List<String> damageList)
     {
-
-        damageList.AddRange(damageInfoList.Select(damageType => damageType.name).ToList());
-
         var cleanedList = damageList.Distinct().ToList();
         damageList.Clear();
         damageList.AddRange(cleanedList);
+    }
+
+    private static void UpdateDamageList(List<String> damageList, List<ApiResource> damageInfoList)
+    {
+        damageList.AddRange(damageInfoList.Select(damageType => damageType.name).ToList());
+
     }
 
 
